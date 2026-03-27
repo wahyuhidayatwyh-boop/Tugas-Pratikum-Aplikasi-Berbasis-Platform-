@@ -5,8 +5,8 @@
 
 ## 🎥 Link Video Presentasi
 
-- [**Tonton Video Presentasi di Sini**](https://drive.google.com/drive/folders/1fqAk7Yysaamjo8z2fShI0BLzt1Q5vjpv?usp=sharing)
+- [**Tonton Video Presentasi di Sini**](https://drive.google.com/file/d/1hd90VFfWzHvwpMcbA-U57_1eN3nO4MZ3/view?usp=sharing)
 
 ## 📄 Dokumen Tugas
 
-- [Download Slide Presentasi (PDF)](PPT/ppt%20tugas2.pdf)
+- [Download Slide Presentasi (PDF)](https://drive.google.com/file/d/1EWsN6Rt-1NMj-219r0XVyEX5TSiNwjlM/view?usp=sharing)
