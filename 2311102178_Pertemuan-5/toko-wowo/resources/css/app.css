@@ -1,0 +1,135 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    * {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        background-color: #f1f5f9;
+        background-image:
+            radial-gradient(at 20% 10%, hsla(235, 80%, 95%, 0.5) 0px, transparent 50%),
+            radial-gradient(at 80% 90%, hsla(260, 70%, 95%, 0.4) 0px, transparent 50%);
+        background-attachment: fixed;
+    }
+}
+
+@layer components {
+    /* ─── Navbar ─────────────────────────────── */
+    .wowo-navbar {
+        @apply fixed top-0 left-0 right-0 z-50;
+        background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #4c1d95 100%);
+        box-shadow: 0 4px 24px rgba(49, 46, 129, 0.35);
+    }
+
+    .wowo-nav-link {
+        @apply relative px-4 py-2 text-sm font-semibold text-indigo-200 rounded-lg transition-all duration-200;
+    }
+    .wowo-nav-link:hover {
+        @apply text-white bg-white/10;
+    }
+    .wowo-nav-link.active {
+        @apply text-white bg-white/20;
+    }
+    .wowo-nav-link.active::after {
+        content: '';
+        @apply absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 bg-indigo-300 rounded-full;
+    }
+
+    /* ─── Cards ──────────────────────────────── */
+    .wowo-card {
+        @apply bg-white rounded-2xl shadow-md border border-gray-100/80;
+        backdrop-filter: blur(12px);
+        transition: box-shadow 0.2s ease, transform 0.2s ease;
+    }
+    .wowo-card:hover {
+        @apply shadow-lg;
+        transform: translateY(-1px);
+    }
+
+    /* ─── Stat Card ──────────────────────────── */
+    .stat-card {
+        @apply wowo-card p-5 flex items-center gap-4 overflow-hidden;
+        position: relative;
+    }
+    .stat-card::before {
+        content: '';
+        position: absolute;
+        top: 0; right: 0;
+        width: 80px; height: 80px;
+        border-radius: 50%;
+        opacity: 0.06;
+        transform: translate(20px, -20px);
+    }
+
+    /* ─── Buttons ────────────────────────────── */
+    .btn-primary {
+        @apply inline-flex items-center gap-2 px-5 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl shadow-md transition-all duration-150 active:scale-95;
+    }
+    .btn-secondary {
+        @apply inline-flex items-center gap-2 px-5 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm font-semibold rounded-xl transition-all duration-150;
+    }
+    .btn-warning {
+        @apply inline-flex items-center gap-1.5 px-3 py-1.5 bg-amber-400 hover:bg-amber-500 text-white text-xs font-semibold rounded-lg transition-all duration-150 active:scale-95;
+    }
+    .btn-danger {
+        @apply inline-flex items-center gap-1.5 px-3 py-1.5 bg-red-500 hover:bg-red-600 text-white text-xs font-semibold rounded-lg transition-all duration-150 active:scale-95;
+    }
+
+    /* ─── Form Input ─────────────────────────── */
+    .wowo-input {
+        @apply w-full px-4 py-3 border border-gray-200 rounded-xl text-sm bg-gray-50 focus:bg-white transition-all duration-200 outline-none focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400;
+    }
+    .wowo-input.error {
+        @apply border-red-400 bg-red-50 focus:ring-red-300;
+    }
+    .wowo-label {
+        @apply block text-sm font-semibold text-gray-700 mb-1.5;
+    }
+
+    /* ─── Badge ──────────────────────────────── */
+    .badge {
+        @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-bold;
+    }
+    .badge-green  { @apply badge bg-emerald-100 text-emerald-700; }
+    .badge-yellow { @apply badge bg-amber-100 text-amber-700; }
+    .badge-red    { @apply badge bg-red-100 text-red-700; }
+
+    /* ─── Table ──────────────────────────────── */
+    .wowo-table th {
+        @apply px-5 py-3.5 text-left text-xs font-bold text-gray-400 uppercase tracking-widest bg-gray-50/80;
+    }
+    .wowo-table td {
+        @apply px-5 py-4 text-sm;
+    }
+    .wowo-table tbody tr {
+        @apply border-t border-gray-100 transition-colors duration-100;
+    }
+    .wowo-table tbody tr:hover {
+        @apply bg-indigo-50/40;
+    }
+
+    /* ─── Page Header Banner ─────────────────── */
+    .page-banner {
+        @apply py-6 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto;
+    }
+}
+
+/* ─── Animations ─────────────────────────────── */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.92); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+.animate-fade-in-up { animation: fadeInUp 0.4s ease both; }
+.animate-scale-in   { animation: scaleIn  0.25s ease both; }
+
+.animate-delay-1 { animation-delay: 0.07s; }
+.animate-delay-2 { animation-delay: 0.14s; }
+.animate-delay-3 { animation-delay: 0.21s; }

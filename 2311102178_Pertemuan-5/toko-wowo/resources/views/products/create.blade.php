@@ -1,0 +1,113 @@
+<x-app-layout>
+    <x-slot name="header">
+        <div class="flex items-center gap-3">
+            <a href="{{ route('products.index') }}"
+               class="w-9 h-9 rounded-xl bg-gray-100 hover:bg-indigo-100 text-gray-500 hover:text-indigo-600 flex items-center justify-center transition">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                </svg>
+            </a>
+            <div>
+                <p class="text-xs font-semibold text-indigo-500 uppercase tracking-widest mb-0.5">Produk</p>
+                <h2 class="font-bold text-2xl text-gray-800">Tambah Produk Baru</h2>
+            </div>
+        </div>
+    </x-slot>
+
+    <div class="py-8">
+        <div class="max-w-2xl mx-auto sm:px-6 lg:px-8">
+            <div class="wowo-card overflow-hidden animate-scale-in">
+
+                {{-- Card Header Gradient --}}
+                <div class="px-8 py-6 relative overflow-hidden"
+                     style="background: linear-gradient(135deg, #4338ca, #7c3aed)">
+                    <h3 class="text-white font-bold text-lg flex items-center gap-2">
+                        <span>📦</span> Informasi Produk
+                    </h3>
+                    <p class="text-indigo-200 text-sm mt-1">Isi semua detail produk dengan lengkap dan benar</p>
+                    <div class="absolute -right-6 -top-6 w-28 h-28 rounded-full bg-white/10"></div>
+                    <div class="absolute -right-2 bottom-0 w-16 h-16 rounded-full bg-white/5"></div>
+                </div>
+
+                <form action="{{ route('products.store') }}" method="POST" class="p-8 space-y-5">
+                    @csrf
+
+                    {{-- Nama Produk --}}
+                    <div>
+                        <label for="name" class="wowo-label">
+                            Nama Produk <span class="text-red-500">*</span>
+                        </label>
+                        <input type="text" id="name" name="name"
+                               value="{{ old('name') }}"
+                               class="wowo-input {{ $errors->has('name') ? 'error' : '' }}"
+                               placeholder="Contoh: Beras Premium 5kg">
+                        @error('name')
+                            <p class="mt-1.5 text-xs text-red-500 flex items-center gap-1">
+                                <svg class="w-3.5 h-3.5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+                                </svg>
+                                {{ $message }}
+                            </p>
+                        @enderror
+                    </div>
+
+                    {{-- Deskripsi --}}
+                    <div>
+                        <label for="description" class="wowo-label">
+                            Deskripsi
+                            <span class="text-xs font-normal text-gray-400 ml-1">(opsional)</span>
+                        </label>
+                        <textarea id="description" name="description" rows="3"
+                                  class="wowo-input resize-none {{ $errors->has('description') ? 'error' : '' }}"
+                                  placeholder="Deskripsi singkat tentang produk ini...">{{ old('description') }}</textarea>
+                        @error('description')
+                            <p class="mt-1.5 text-xs text-red-500">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    {{-- Harga & Stok --}}
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label for="price" class="wowo-label">
+                                Harga <span class="text-red-500">*</span>
+                            </label>
+                            <div class="relative">
+                                <span class="absolute left-4 top-3 text-sm text-gray-400 font-semibold pointer-events-none">Rp</span>
+                                <input type="number" id="price" name="price"
+                                       value="{{ old('price') }}"
+                                       class="wowo-input pl-10 {{ $errors->has('price') ? 'error' : '' }}"
+                                       placeholder="0" min="0">
+                            </div>
+                            @error('price')
+                                <p class="mt-1.5 text-xs text-red-500">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div>
+                            <label for="stock" class="wowo-label">
+                                Stok <span class="text-red-500">*</span>
+                            </label>
+                            <input type="number" id="stock" name="stock"
+                                   value="{{ old('stock') }}"
+                                   class="wowo-input {{ $errors->has('stock') ? 'error' : '' }}"
+                                   placeholder="0" min="0">
+                            @error('stock')
+                                <p class="mt-1.5 text-xs text-red-500">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    </div>
+
+                    {{-- Actions --}}
+                    <div class="pt-2 flex items-center justify-end gap-3 border-t border-gray-100">
+                        <a href="{{ route('products.index') }}" class="btn-secondary">Batal</a>
+                        <button type="submit" class="btn-primary">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                            </svg>
+                            Simpan Produk
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</x-app-layout>
